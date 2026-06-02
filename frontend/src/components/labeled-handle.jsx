@@ -1,0 +1,34 @@
+import React from "react";
+
+import { cn } from "@/lib/utils";
+import { BaseHandle } from "@/components/base-handle";
+
+const flexDirections = {
+  top: "flex-col",
+  right: "flex-row-reverse justify-end",
+  bottom: "flex-col-reverse justify-end",
+  left: "flex-row",
+};
+
+export function LabeledHandle({
+  className,
+  labelClassName,
+  handleClassName,
+  title,
+  position,
+  ...props
+}) {
+  const { ref, ...handleProps } = props;
+
+  return (
+    <div
+      title={title}
+      className={cn("relative flex items-center", flexDirections[position], className)}
+      ref={ref}>
+      <BaseHandle position={position} className={handleClassName} {...handleProps} />
+      <label className={cn("text-foreground px-3", labelClassName)}>
+        {title}
+      </label>
+    </div>
+  );
+}
