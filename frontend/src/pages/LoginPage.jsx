@@ -8,7 +8,8 @@ function LoginPage() {
   const [isRegister, setIsRegister] = useState(false);
   const navigate = useNavigate();
 
-  const BASE_URL = import.meta.env.VITE_API_URL;
+  const rawBaseUrl = import.meta.env.VITE_API_URL || "";
+  const BASE_URL = rawBaseUrl.replace(/\/+$/, "");
 
   async function handleSubmit(e) {
     e.preventDefault();

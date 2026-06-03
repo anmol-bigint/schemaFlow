@@ -18,8 +18,10 @@ export default function SharedView() {
   useEffect(() => {
     async function load() {
       try {
+        const rawBaseUrl = import.meta.env.VITE_API_URL || "";
+        const BASE_URL = rawBaseUrl.replace(/\/+$/, "");
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/schema/${id}`
+          `${BASE_URL}/api/schema/${id}`
         );
         setTitle(res.data.title || "Shared Schema");
         setSchema(res.data.dbml || "");
