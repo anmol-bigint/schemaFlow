@@ -25,9 +25,7 @@ function LoginPage() {
       return;
     }
 
-    const url = isRegister
-      ? `${BASE_URL}/api/user/signup`
-      : `${BASE_URL}/api/user/login`;
+    const url = isRegister ? `${BASE_URL}/api/user/signup` : `${BASE_URL}/api/user/login`;
 
     const response = await axios.post(url, data);
 
@@ -37,7 +35,6 @@ function LoginPage() {
     if (response.data.token) {
       localStorage.setItem("token", response.data.token);
       navigate("/");
-
     }
 
     // Optional: Reset form
